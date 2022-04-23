@@ -71,8 +71,9 @@
         <div class="input-div">
           <form>
             <div class="imp">
-              <input type="search" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm">
+              <input type="search" class="form-control search-main" aria-label="Sizing example input"
+              id="search-main" aria-describedby="inputGroup-sizing-sm">
+              <label for="search-main" class="seach-label">Search</label>
             </div>
 
             <button type="button" class="btn add-use">+Add New</button>
@@ -102,7 +103,7 @@
           <p>Submitted Succesfully</p>
           <i class='bx bx-check'></i>
         </div>
-        <!-- Modal -->
+        <!-- ?Modal for Adding -->
 
         <div class="modal1">
           <form class="form-submit">
@@ -110,11 +111,22 @@
             <hr>
             <div class="modal-body">
               <div class="left-input">
-                <input type="text" class="form-control username" placeholder="Full Name">
+
+                <div class="ful-name-div">
+                  <input type="text" id="username" class="form-control username" >
+                  <label for="username" class="user-label">username</label>
+                  <p class="user-error"></p>
+                </div>
   
-                <input type="text" class="form-control email" placeholder="Email">
-  
-                <input type="number" class="form-control number" placeholder="Mobile">
+                <div class="email-div">
+                  <input type="text" id="email" class="form-control email">
+                  <label for="email">Email</label>
+                  <p class="email-error"></p>
+                </div>
+                <div class="number-div">
+                  <input type="number" id="number" class="form-control number">
+                  <label for="number">Mobile</label>
+                </div>
               </div>
   
               <div class="right-i-main">
@@ -145,6 +157,7 @@
                 </div>
   
                 <select class="form-select select" aria-label="Default select example">
+                  <option value="empty">Choose Your Positiob</option>
                   <option value="Developer">Developer</option>
                   <option value="Marketing">Marketing</option>
                   <option value="Accounting">Accounting</option>
@@ -162,7 +175,7 @@
   
                 <div class="submit-btns">
                   <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                  <button type="button" class="btn btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-secondary">Reset</button>
                 </div>
               </div>
             </div>
@@ -178,15 +191,15 @@
             <h5>Edit Form</h5>
             <hr>
             <div class="modal-body2">
-                <input type="text" class="form-control username" placeholder="Change Name">
+                <input type="text" class="form-control edit-name" placeholder="Change Name">
   
-                <input type="text" class="form-control email" placeholder="Change Email">
+                <input type="text" class="form-control edit-email" placeholder="Change Email">
   
-                <input type="number" class="form-control number" placeholder="Change Mobile">
+                <input type="number" class="form-control edit-number" placeholder="Change Mobile">
               
-                <h5>Change Position</h5>
+                <h5>Edit Position</h5>
   
-                <select class="form-select select2" aria-label="Default select example" aria-placeholder="Department">
+                <select class="form-select edit-select2" aria-label="Default select example" aria-placeholder="Department">
                   <option value="Developer">Developer</option>
                   <option value="Marketing">Marketing</option>
                   <option value="Accounting">Accounting</option>

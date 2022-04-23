@@ -21,45 +21,54 @@ addUser.addEventListener("click", () => {
 modalBack.addEventListener("click", () => {
   modal.classList.remove("modal1-show");
   modalBack.classList.remove("modal1-back-show");
-  modal2.classList.remove('modal2-show')
-
+  modal2.classList.remove("modal2-show");
 });
-
-let countId = 0;
+let count = 1;
 // ?Array of inputs
 let array = [
   {
-    id: countId,
-    userName: userName,
-    email: email,
-    phoneNumber: phoneNumber,
-    select: select,
+    id: count,
+    userName: "Shaxzod",
+    email: "shaxzod@gmail.com",
+    phoneNumber: +990901020440,
+    select: "HR",
     permanent: false,
   },
 ];
 
-// ?Adding New Employees to list
-formSubmit.addEventListener("submit", submitFunction);
-function submitFunction(e) {
-  e.preventDefault();
+let newArr = [];
+function showCard(array) {
+  newArr = [];
   array.map((item) => {
-    item.id++;
-    let successSubmitted = document.querySelector(".succes-fixed");
-    tableBody.innerHTML += `
-    <tr class'tr-all'>
-      <td class='user-td'>${item.userName.value}</td>
-      <td class='email-td'>${item.email.value}</td>
-      <td class='phone-td'>${item.phoneNumber.value}</td>
-      <td class='department-td'>${item.select.value}</td>
+    let div = `
+    <tr class='tr-all' id='${item.id}'>
+      <td class='user-td'>${item.userName}</td>
+      <td class='email-td'>${item.email}</td>
+      <td class='phone-td'>${item.phoneNumber}</td>
+      <td class='department-td'>${item.select}</td>
       <td class='edit-td'>
-      <i class='bx bx-edit-alt edit' id='edit${item.id}' onclick="editList('edit${item.id}')"></i>
+      <i class='bx bx-edit-alt edit' onclick="editList('${item.id}')"></i>
       <i class='bx bx-x remove' id='${item.id}'onclick="removeList('${item.id}')"></i></td>
   </tr>
     `;
-    item.userName.value = "";
-    item.email.value = "";
-    item.phoneNumber.value = "";
 
+    newArr.push(div);
+  });
+  tableBody.innerHTML = newArr.join("");
+}
+showCard(array);
+
+// ?Adding New Employees to list
+formSubmit.addEventListener("submit", submitFunction);
+
+function submitFunction(e) {
+  e.preventDefault();
+  count++;
+  let userError = document.querySelector(".user-error");
+  if (phoneNumber.value == "" && phoneNumber.value.length < 9) {
+    phoneNumber.style.border = "1px solid red";
+  } else {
+    let successSubmitted = document.querySelector(".succes-fixed");
     successSubmitted.classList.add("succes-fixed-show");
     setTimeout(() => {
       successSubmitted.classList.remove("succes-fixed-show");
@@ -67,33 +76,88 @@ function submitFunction(e) {
 
     modal.classList.remove("modal1-show");
     modalBack.classList.remove("modal1-back-show");
-  });
+
+    array.push({
+      id: count,
+      userName: userName.value,
+      email: email.value,
+      phoneNumber: phoneNumber.value,
+      select: select.value,
+    });
+    showCard(array);
+
+    userName.value = "";
+    email.value = "";
+    phoneNumber.value = "";
+  }
 }
-
-// ?Deleting Employees List
-function removeList(id) {
-  let removeBtn = document.querySelectorAll(".remove");
-
-  removeBtn.forEach((item) => {
-    if (id == item.id) {
-      item.parentElement.parentElement.style.display = "none";
-    }
-  });
-}
-
 
 // ?Editing Lists
 let modal2 = document.querySelector(".modal2");
-
 function editList(id) {
-  let editBtn = document.querySelectorAll(".edit");
+  let editName = document.querySelector(".edit-name");
+  let editEmail = document.querySelector(".edit-email");
+  let editNumber = document.querySelector(".edit-number");
+  let editSelect = document.querySelector(".edit-select2");
+  let saveAdit = document.querySelector(".save");
 
-  modal2.classList.add('modal2-show')
+  modal2.classList.add("modal2-show");
   modalBack.classList.add("modal1-back-show");
-
-  editBtn.forEach(item => {
+  array.forEach((item, index) => {
     if (id == item.id) {
-      
+      editName.value = item.userName;
+      editEmail.value = item.email;
+      editNumber.value = item.phoneNumber;
+      editSelect.value = item.select;
+      editItem(id, editName, editEmail, editNumber, editSelect);
     }
-  })
+  });
 }
+
+let formSubmit1 = document.querySelector(".form-submit2");
+function editItem(id, editName, editEmail, editNumber, editSelect) {
+  let count2 = 1;
+  formSubmit1.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log((array[id - 1].userName = editName.value));
+    if (count2 === 1) {
+      array[id - 1].userName = editName.value;
+      array[id - 1].email = editEmail.value;
+      array[id - 1].phoneNumber = editNumber.value;
+      array[id - 1].select = editSelect.value;
+      showCard(array);
+      count2++;
+    }
+    modalBack.classList.remove("modal1-back-show");
+    modal2.classList.remove("modal2-show");
+  });
+}
+
+function removeList(id) {
+  array.forEach((item) => {
+    if (id !== item.id) {
+      // ! Shu joyi
+    }
+  });
+}
+
+
+// ?Search filter
+
+let searchMain = document.querySelector('.search-main')
+searchMain.addEventListener("keyup", (e) => {
+  e.preventDefault();
+  let searchReady = e.target.value.toLowerCase();
+  let liAr = document.querySelectorAll('.user-td')
+  let editTd = document.querySelectorAll('.edit-td')
+  console.log(liAr);
+  liAr.forEach((li) => {
+    let liText = li.textContent;
+
+    if (liText.toLowerCase().indexOf(searchReady) != -1) {
+      li.parentElement.classList.add('show')
+    } else {
+      li.parentElement.classList.add('hide')
+    }
+  });
+});
