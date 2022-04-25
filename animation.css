@@ -1,0 +1,5 @@
+.modal-close-anim {
+  transition: 0.9s;
+  transform: translateY(-100%);
+  opacity: 0;
+}
