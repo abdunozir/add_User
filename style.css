@@ -6,29 +6,35 @@
 
 body {
   background-color: #f4f5fd;
+  box-sizing: border-box;
 }
 
 .container-1 {
-  display: flex
+  display: flex;
 }
+
 .left {
   width: 320px;
   height: 100vh;
   background-color: #253053;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .right {
   width: 100%;
+  padding-left: 320px;
 }
 
 .user-im {
-  padding-top: 50px;
+  padding-top: 120px;
   padding-left: 60px;
   display: flex;
   background-color: #fff;
   padding-bottom: 50px;
 }
-
 
 .svg-img {
   padding: 15px;
@@ -46,6 +52,77 @@ body {
 
 .navbar {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: fixed;
+  top: 0;
+  left: 320px;
+  right: 0;
+}
+
+.navbar-nav {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.head-right {
+  display: flex;
+}
+
+.head-right li {
+  margin: 5px;
+  cursor: pointer;
+}
+
+.nav-link {
+  width: 45px;
+  height: 45px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  transition: all .4s ease;
+  position: relative;
+}
+
+.circle-absolute1 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(252, 67, 67);
+  top: 0px;
+  right: 3px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.circle-absolute2 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #253053;
+  top: 0px;
+  right: 3px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  background-color: rgb(224, 224, 224);
+
+}
+
+.nav-link i {
+  font-size: 20px;
 }
 
 .uset-data {
@@ -59,10 +136,6 @@ body {
   border-radius: 5px;
 }
 
-/* .input-div {
-  width: 100%;
-} */
-
 .input-div form {
   display: flex;
   width: 100%;
@@ -75,7 +148,7 @@ body {
 
 .input-div button {
   width: 120px;
-  margin-left: 50px;
+  margin-left: 0px;
   border: 1px solid #999;
   color: #253053;
   background-color: inherit;
@@ -88,7 +161,7 @@ body {
 
 .table th {
   background-color: #3c44b126;
-  color: #3a4c86;
+  color: #333996;
   font-size: 16px;
   font-weight: 500;
 }
@@ -118,7 +191,6 @@ body {
 .modal-body {
   display: flex;
 }
-
 
 .left-input {
   width: 50%;
@@ -202,8 +274,7 @@ body {
 }
 
 .table tr {
-  transition: all .4s ease;
-  /* padding: 5px; */
+  transition: all 0.4s ease;
 }
 
 .table tr:hover {
@@ -221,7 +292,7 @@ body {
   align-items: center;
   height: 60px;
   background-color: rgb(212, 244, 212);
-  color: green; 
+  color: green;
   border-radius: 5px;
   display: none;
 }
@@ -241,7 +312,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 440px;
+  height: 400px;
   background-color: #fff;
   padding: 30px;
   display: none;
@@ -258,7 +329,7 @@ body {
 }
 
 .modal-body2 input {
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 }
 
 .submit-btns2 {
@@ -274,7 +345,6 @@ body {
   margin-bottom: 20px;
 }
 
-
 .imp {
   position: relative;
   width: 100%;
@@ -286,22 +356,29 @@ body {
   height: 100%;
 }
 
-.imp .seach-label {
+.seach-label {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 15px;
   font-size: 18px;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   padding: 0 5px;
   background-color: #fff;
 }
 
-.imp input:focus ~ label {
-  top: -4px;
-  font-size: 16px;
+.search-main:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
 }
 
+
+.search-main:focus ~ .seach-label,
+.search-main:not(:placeholder-shown).search-main:not(:focus) ~ .seach-label {
+  top: -4px;
+  font-size: 14px;
+  color: #333996;
+}
 
 .ful-name-div {
   position: relative;
@@ -316,7 +393,7 @@ body {
   color: red;
 }
 
-.ful-name-div input {
+.sername {
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -328,16 +405,22 @@ body {
   transform: translateY(-50%);
   left: 15px;
   font-size: 18px;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   padding: 0 5px;
   background-color: #fff;
 }
 
-.ful-name-div input:focus ~ label {
-  top: -4px;
-  font-size: 16px;
+.username:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
 }
 
+.username:focus ~ .user-label,
+.username:not(:placeholder-shown).username:not(:focus) ~ .user-label {
+  top: -4px;
+  font-size: 14px;
+  color: #333996;
+}
 
 .email-div {
   position: relative;
@@ -345,7 +428,7 @@ body {
   height: 50px;
 }
 
-.email-div input {
+.email {
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -357,14 +440,21 @@ body {
   transform: translateY(-50%);
   left: 15px;
   font-size: 18px;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   padding: 0 5px;
   background-color: #fff;
 }
 
-.email-div input:focus ~ label {
+.email:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
+}
+
+.email:focus ~ .email-label,
+.email:not(:placeholder-shown).email:not(:focus) ~ .email-label{
   top: -4px;
-  font-size: 16px;
+  font-size: 14px;
+  color: #333996;
 }
 
 .email-error {
@@ -374,14 +464,13 @@ body {
   color: red;
 }
 
-
 .number-div {
   position: relative;
   width: 100%;
   height: 50px;
 }
 
-.number-div input {
+.number {
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -393,14 +482,21 @@ body {
   transform: translateY(-50%);
   left: 15px;
   font-size: 18px;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   padding: 0 5px;
   background-color: #fff;
 }
 
-.number-div input:focus ~ label {
+.number:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
+}
+
+.number:focus ~ .number-label,
+.number:not(:placeholder-shown).number:not(:focus) ~ .number-label {
   top: -4px;
-  font-size: 16px;
+  font-size: 14px;
+  color: #333996;
 }
 
 .hide {
@@ -410,3 +506,98 @@ body {
 .show {
   display: block;
 }
+
+.phone-border-red {
+  border: 1px solid red;
+}
+
+.edit-name {
+  transition: all .4s ease;
+}
+
+.edit-name:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
+}
+
+.edit-email {
+  transition: all .4s ease;
+}
+
+.edit-email:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
+}
+
+.edit-number {
+  transition: all .4s ease;
+}
+
+.edit-number:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
+}
+
+.edit-select2 {
+  transition: all .4s ease;
+}
+
+.edit-select2:focus {
+  border: 2px solid #333996;
+  box-shadow: none;
+}
+
+.modal-for-delete {
+  position: fixed;
+  width: 330px;
+  height: 330px;
+  background-color: #fff;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 20px;
+  display: none;
+  z-index: 555;
+}
+
+.modal-for-delete-show {
+  display: block;
+}
+
+.modal-for-delete svg {
+  width: 100px;
+}
+
+.modal-for-delete svg path {
+  fill: red;
+}
+
+.buttons-remove {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons-remove button {
+  padding: 5px 40px;
+  border: none;
+  transition: all .4s ease;
+}
+
+.buttons-remove button:first-child {
+  background-color: red;
+  color: #fff;
+  font-weight: 600;
+}
+
+.buttons-remove button:last-child {
+  background-color: rgb(113, 112, 112) !important;
+  color: #fff;
+}
+
+.buttons-remove button:hover {
+  opacity: .7;
+}
+

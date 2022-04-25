@@ -23,7 +23,7 @@ modalBack.addEventListener("click", () => {
   modalBack.classList.remove("modal1-back-show");
   modal2.classList.remove("modal2-show");
 });
-let count = 1;
+let count = 1
 // ?Array of inputs
 let array = [
   {
@@ -32,14 +32,13 @@ let array = [
     email: "shaxzod@gmail.com",
     phoneNumber: +990901020440,
     select: "HR",
-    permanent: false,
   },
 ];
 
 let newArr = [];
 function showCard(array) {
   newArr = [];
-  array.map((item) => {
+  array.map((item, index) => {
     let div = `
     <tr class='tr-all' id='${item.id}'>
       <td class='user-td'>${item.userName}</td>
@@ -61,13 +60,15 @@ showCard(array);
 // ?Adding New Employees to list
 formSubmit.addEventListener("submit", submitFunction);
 
+
 function submitFunction(e) {
   e.preventDefault();
-  count++;
+  count++
   let userError = document.querySelector(".user-error");
   if (phoneNumber.value == "" && phoneNumber.value.length < 9) {
-    phoneNumber.style.border = "1px solid red";
+    phoneNumber.classList.add('phone-border-red')
   } else {
+    phoneNumber.classList.remove('phone-border-red')
     let successSubmitted = document.querySelector(".succes-fixed");
     successSubmitted.classList.add("succes-fixed-show");
     setTimeout(() => {
@@ -76,7 +77,7 @@ function submitFunction(e) {
 
     modal.classList.remove("modal1-show");
     modalBack.classList.remove("modal1-back-show");
-
+    
     array.push({
       id: count,
       userName: userName.value,
@@ -84,6 +85,9 @@ function submitFunction(e) {
       phoneNumber: phoneNumber.value,
       select: select.value,
     });
+    console.log(count);
+
+    console.log(array);
     showCard(array);
 
     userName.value = "";
@@ -99,7 +103,6 @@ function editList(id) {
   let editEmail = document.querySelector(".edit-email");
   let editNumber = document.querySelector(".edit-number");
   let editSelect = document.querySelector(".edit-select2");
-  let saveAdit = document.querySelector(".save");
 
   modal2.classList.add("modal2-show");
   modalBack.classList.add("modal1-back-show");
@@ -108,23 +111,20 @@ function editList(id) {
       editName.value = item.userName;
       editEmail.value = item.email;
       editNumber.value = item.phoneNumber;
-      editSelect.value = item.select;
-      editItem(id, editName, editEmail, editNumber, editSelect);
+      editItem(id, editName, editEmail, editNumber);
     }
   });
 }
 
 let formSubmit1 = document.querySelector(".form-submit2");
-function editItem(id, editName, editEmail, editNumber, editSelect) {
+function editItem(id, editName, editEmail, editNumber) {
   let count2 = 1;
   formSubmit1.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log((array[id - 1].userName = editName.value));
     if (count2 === 1) {
       array[id - 1].userName = editName.value;
       array[id - 1].email = editEmail.value;
       array[id - 1].phoneNumber = editNumber.value;
-      array[id - 1].select = editSelect.value;
       showCard(array);
       count2++;
     }
@@ -133,31 +133,37 @@ function editItem(id, editName, editEmail, editNumber, editSelect) {
   });
 }
 
+// ?Remove List
 function removeList(id) {
-  array.forEach((item) => {
-    if (id !== item.id) {
-      // ! Shu joyi
-    }
-  });
+  let con = confirm('Are You Sure?')
+  if (con == true) {
+    const newArray = array.filter(item => item.id != id);
+    array = newArray;
+    showCard(array)
+  }
 }
 
-
 // ?Search filter
-
 let searchMain = document.querySelector('.search-main')
 searchMain.addEventListener("keyup", (e) => {
   e.preventDefault();
   let searchReady = e.target.value.toLowerCase();
   let liAr = document.querySelectorAll('.user-td')
-  let editTd = document.querySelectorAll('.edit-td')
-  console.log(liAr);
   liAr.forEach((li) => {
     let liText = li.textContent;
-
     if (liText.toLowerCase().indexOf(searchReady) != -1) {
-      li.parentElement.classList.add('show')
+      li.parentElement.style.display = 'block'
+      console.log(li.parentElement);
     } else {
-      li.parentElement.classList.add('hide')
+      li.parentElement.style.display = 'none'
     }
   });
 });
+
+// ?Reset list
+function resetList() {
+  userName.value = ''
+  email.value = ''
+  phoneNumber.value = ''
+  phoneNumber.classList.remove('phone-border-red')
+}

@@ -33,17 +33,30 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <div class="inp">
+
+                </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
+              <div class="head-right">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class='bx bx-bell'></i>
+                    <div class="circle-absolute1">4</div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class='bx bx-comment'></i>
+                    <div class="circle-absolute2">3</div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">
+                    <i class='bx bx-power-off'></i>
+                  </a>
+                </li>
+              </div>
+              
             </ul>
           </div>
         </div>
@@ -71,7 +84,7 @@
         <div class="input-div">
           <form>
             <div class="imp">
-              <input type="search" class="form-control search-main" aria-label="Sizing example input"
+              <input type="search" autocomplete="off" placeholder=" " class="form-control search-main" aria-label="Sizing example input"
               id="search-main" aria-describedby="inputGroup-sizing-sm">
               <label for="search-main" class="seach-label">Search</label>
             </div>
@@ -113,19 +126,19 @@
               <div class="left-input">
 
                 <div class="ful-name-div">
-                  <input type="text" id="username" class="form-control username" >
+                  <input type="text" placeholder=" " id="username" class="form-control username" >
                   <label for="username" class="user-label">username</label>
                   <p class="user-error"></p>
                 </div>
   
                 <div class="email-div">
-                  <input type="text" id="email" class="form-control email">
-                  <label for="email">Email</label>
+                  <input type="email" placeholder=" " id="email" class="form-control email">
+                  <label for="email" class="email-label">Email</label>
                   <p class="email-error"></p>
                 </div>
                 <div class="number-div">
-                  <input type="number" id="number" class="form-control number">
-                  <label for="number">Mobile</label>
+                  <input type="number" placeholder=" " id="number" class="form-control number">
+                  <label for="number" class="number-label">Mobile</label>
                 </div>
               </div>
   
@@ -157,7 +170,6 @@
                 </div>
   
                 <select class="form-select select" aria-label="Default select example">
-                  <option value="empty">Choose Your Positiob</option>
                   <option value="Developer">Developer</option>
                   <option value="Marketing">Marketing</option>
                   <option value="Accounting">Accounting</option>
@@ -175,7 +187,7 @@
   
                 <div class="submit-btns">
                   <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                  <button type="submit" class="btn btn-secondary">Reset</button>
+                  <button type="submit" onclick="resetList()" class="btn btn-secondary">Reset</button>
                 </div>
               </div>
             </div>
@@ -193,35 +205,33 @@
             <div class="modal-body2">
                 <input type="text" class="form-control edit-name" placeholder="Change Name">
   
-                <input type="text" class="form-control edit-email" placeholder="Change Email">
+                <input type="email" class="form-control edit-email" placeholder="Change Email">
   
                 <input type="number" class="form-control edit-number" placeholder="Change Mobile">
-              
-                <h5>Edit Position</h5>
-  
-                <select class="form-select edit-select2" aria-label="Default select example" aria-placeholder="Department">
-                  <option value="Developer">Developer</option>
-                  <option value="Marketing">Marketing</option>
-                  <option value="Accounting">Accounting</option>
-                  <option value="HR">HR</option>
-                </select>
-  
+            
                 <div class="submit-btns2">
                   <button type="submit" class="btn btn-primary save">Save</button>
                 </div>
-              
             </div>
           </form>
         </div>
 
+        <!-- ?Modal for Delete Absolutely -->
+        <div class="modal-for-delete">
+          <svg class="MuiSvgIcon-root"  focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm.88 13.75h-1.75V14h1.75v1.75zm0-2.87h-1.75c0-2.84 2.62-2.62 2.62-4.38 0-.96-.79-1.75-1.75-1.75s-1.75.79-1.75 1.75H8.5C8.5 6.57 10.07 5 12 5s3.5 1.57 3.5 3.5c0 2.19-2.62 2.41-2.62 4.38z"></path></svg>
 
+          <h3>Are you sure to delete this record?</h3>
+          <h5>You can't undo this operation</h5>
+
+          <div class="buttons-remove">
+            <button class="yes-delete" onclick="clickedForTrue()">Yes</button>
+            <button class="no-delete">No</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
   <script src="main.js"></script>
 </body>
 
